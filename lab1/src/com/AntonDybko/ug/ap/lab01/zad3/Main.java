@@ -10,9 +10,9 @@ public class Main {
         System.out.println("How old are you in second?");
         int age_in_seconds = scanner.nextInt();
         System.out.println("Where do you live?");
-        System.out.println("0. Mercury");
-        System.out.println("1. Venus");
-        System.out.println("2. Earth");
+        System.out.println("0. Earth");
+        System.out.println("1. Mercury");
+        System.out.println("2. Venus");
         System.out.println("3. Mars");
         System.out.println("4. Jupiter");
         System.out.println("5. Saturn");
@@ -25,6 +25,7 @@ public class Main {
         }else{
             DecimalFormat df = new DecimalFormat("#.##");
             Planet selectedPlanet = Planet.values()[planet_number];
+            System.out.println(selectedPlanet.getYear());
             double age = age_in_seconds / selectedPlanet.getYear();
             System.out.println("Your age on " + selectedPlanet.name() + " is " + df.format(age) + " years.");
         }
