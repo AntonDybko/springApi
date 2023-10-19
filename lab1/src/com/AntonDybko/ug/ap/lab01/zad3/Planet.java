@@ -17,4 +17,8 @@ public enum Planet {
     public double getYear(){
         return year;
     }
+    //add countAge method!!!
+    public double countAge(int s){
+        return s / year;
+    }
 }
