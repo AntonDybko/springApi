@@ -1,3 +1,5 @@
 set PATH=%PATH%;C:\Users\adybko\.jdks\openjdk-21.0.1\bin
 
 set JAVA_HOME=C:\Users\adybko\.jdks\openjdk-21.0.1
+
+java -jar C:\Users\adybko\anton-dybko\lab3\zad1\build\libs\zad1-0.0.1-SNAPSHOT.jar
