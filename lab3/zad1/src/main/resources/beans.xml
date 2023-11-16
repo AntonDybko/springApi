@@ -5,16 +5,15 @@
 
     <bean id="khasdfhasdf223" class="com.lab3.zad1.domain.Person">
         <property name="id" value="khasdfhasdf223" />
-        <property name="firstname" value="Malenia" />
+        <property name="firstName" value="Malenia" />
         <property name="lastName" value="BladeOfMiquella" />
         <property name="email" value="m@gmail.com" />
         <property name="birthYear" value="999" />
-
     </bean>
 
     <bean id="khasdfhasdf224" class="com.lab3.zad1.domain.Person">
         <property name="id" value="khasdfhasdf224" />
-        <property name="firstname" value="Radagon" />
+        <property name="firstName" value="Radagon" />
         <property name="lastName" value="OfTheGoldenOrder" />
         <property name="email" value="r@gmail.com" />
         <property name="birthYear" value="968" />
@@ -22,11 +21,35 @@
 
     <bean id="khasdfhasdf225" class="com.lab3.zad1.domain.Person">
         <property name="id" value="khasdfhasdf225" />
-        <property name="firstname" value="Miquella" />
+        <property name="firstName" value="Miquella" />
         <property name="lastName" value="OfTheHaligtree" />
         <property name="email" value="miq@gmail.com" />
         <property name="birthYear" value="997" />
     </bean>
+
+    <!--<bean class="com.lab3.zad1.domain.Person">
+        <constructor-arg name="id" value="khasdfhasdf223" />
+        <constructor-arg name="firstname" value="Malenia" />
+        <constructor-arg name="lastName" value="BladeOfMiquella" />
+        <constructor-arg name="email" value="m@gmail.com" />
+        <constructor-arg name="birthYear" value="999" />
+    </bean>
+
+    <bean class="com.lab3.zad1.domain.Person">
+        <constructor-arg name="id" value="khasdfhasdf224" />
+        <constructor-arg name="firstname" value="Radagon" />
+        <constructor-arg name="lastName" value="OfTheGoldenOrder" />
+        <constructor-arg name="email" value="r@gmail.com" />
+        <constructor-arg name="birthYear" value="968" />
+    </bean>
+
+    <bean class="com.lab3.zad1.domain.Person">
+        <constructor-arg name="id" value="khasdfhasdf225" />
+        <constructor-arg name="firstname" value="Miquella" />
+        <constructor-arg name="lastName" value="OfTheHaligtree" />
+        <constructor-arg name="email" value="miq@gmail.com" />
+        <constructor-arg name="birthYear" value="997" />
+    </bean>!-->
 
 
 </beans>

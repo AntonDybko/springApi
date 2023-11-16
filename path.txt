@@ -1,0 +1,3 @@
+set PATH=%PATH%;C:\Users\adybko\.jdks\openjdk-21.0.1\bin
+
+set JAVA_HOME=C:\Users\adybko\.jdks\openjdk-21.0.1
