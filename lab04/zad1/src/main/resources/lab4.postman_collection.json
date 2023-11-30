@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "33b89a45-073c-4c29-a427-d05ae0bb3f3f",
+		"name": "lab4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14174149"
+	},
+	"item": [
+		{
+			"name": "getAllFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.response.to.have.jsonBody(pm => {\r",
+							"        pm.expect(pm).to.be.an('array');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/food",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"food"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response has expected properties\r",
+							"pm.test(\"Response has expected properties\", function () {\r",
+							"    pm.response.to.have.jsonBody(pm => {\r",
+							"        pm.expect(pm).to.have.property('id');\r",
+							"        pm.expect(pm).to.have.property('name');\r",
+							"        pm.expect(pm).to.have.property('term');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/food/3092a5c1-3d4a-49e5-a289-f10fa3efe928",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"food",
+						"3092a5c1-3d4a-49e5-a289-f10fa3efe928"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Test response header has Location\r",
+							"pm.test(\"Response header has Location\", function () {\r",
+							"    pm.response.to.have.header(\"Location\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"addedFood\",\r\n    \"term\": \"2024-12-01\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/food",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"food"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"updatedFood\",\r\n    \"term\": \"2024-11-01\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/food/0f27ea48-f83a-47fc-95ef-59ccef72e041",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"food",
+						"0f27ea48-f83a-47fc-95ef-59ccef72e041"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/food/0f27ea48-f83a-47fc-95ef-59ccef72e041",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"food",
+						"0f27ea48-f83a-47fc-95ef-59ccef72e041"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

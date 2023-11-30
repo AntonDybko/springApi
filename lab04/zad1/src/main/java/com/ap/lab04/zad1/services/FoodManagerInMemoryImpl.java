@@ -1,12 +1,13 @@
 package com.ap.lab04.zad1.services;
 import com.ap.lab04.zad1.domain.Food;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-
+@Service
 public class FoodManagerInMemoryImpl implements FoodManager {
     List<Food> db = Collections.synchronizedList(new ArrayList<>());
     @Override
@@ -40,10 +41,12 @@ public class FoodManagerInMemoryImpl implements FoodManager {
     };
     private Food findFoodById(UUID targetId) {
         for (Food food : db) {
-            if (food.getId() == targetId) {
+            if (food.getId().equals(targetId)) {
+                System.out.println("Found matching food!");
                 return food;
             }
         }
+        System.out.println("Food not found with ID: " + targetId);
         return null;
     }
 }
