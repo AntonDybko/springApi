@@ -1,11 +1,15 @@
 package com.ap.lab04.zad1.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.ap.lab04.zad1.services.FoodManager;
 import com.ap.lab04.zad1.domain.Food;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,8 +21,9 @@ public class FoodController {
     }
 
     @GetMapping("/api/food")
-    public List<Food> getAll() {
-        return foodManager.getAllFood();
+    public ResponseEntity<List<Food>> getAll() {
+        List<Food> foodList = foodManager.getAllFood();
+        return ResponseEntity.ok(foodList);
     }
 
     @GetMapping("/api/food/{id}")
@@ -32,19 +37,23 @@ public class FoodController {
     }
 
     @PostMapping("/api/food")
-    public ResponseEntity<Void> addFood(@RequestBody Food foodToAdd) {
+    public ResponseEntity<Food> addFood(@Valid @RequestBody Food foodToAdd) {
         UUID id = foodManager.addFood(foodToAdd);
 
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .header("Location", "/api/food/" + id)
-                .build();
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(id)
+                .toUri();
+
+        return ResponseEntity.status(HttpStatus.CREATED).location(location).body(foodToAdd);
     }
 
     @PutMapping("/api/food/{id}")
-    public ResponseEntity<Void> editFood(@PathVariable UUID id, @RequestBody Food newFood) {
+    public ResponseEntity<Food> editFood(@PathVariable UUID id, @Valid @RequestBody Food newFood) {
         Food editedFood = foodManager.putFood(id, newFood);
         if(editedFood != null){
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok(newFood);
         }else{
             throw new FoodNotFoundException("Food not found with ID: " + id);
         }
@@ -52,9 +61,8 @@ public class FoodController {
 
     @DeleteMapping("/api/food/{id}")
     public ResponseEntity<Void> deleteFood(@PathVariable UUID id) {
-        Food deletedFood = foodManager.deleteFood(id);
-        if(deletedFood != null){
-            return ResponseEntity.noContent().build();
+        if(foodManager.deleteFood(id)){
+            return ResponseEntity.noContent().build(); //204
         }else{
             throw new FoodNotFoundException("Food not found with ID: " + id);
         }

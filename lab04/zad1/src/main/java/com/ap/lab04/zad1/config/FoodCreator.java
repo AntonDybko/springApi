@@ -1,6 +1,6 @@
 package com.ap.lab04.zad1.config;
 
-import com.ap.lab04.zad1.domain.Food;
+/*import com.ap.lab04.zad1.domain.Food;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -29,4 +29,4 @@ public class FoodCreator {
         return personToAdd.get(counter);
     }
 
-}
+}*/

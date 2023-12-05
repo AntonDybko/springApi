@@ -1,0 +1,21 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<h2>Add Food</h2>
+<form th:action="@{/add}" th:object="${food}" method="post">
+    <label>Name: <input type="text" th:field="*{name}" /></label><br/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>
+
+    <label>Calories: <input type="number" th:field="*{calories}" /></label><br/>
+    <span th:if="${#fields.hasErrors('calories')}" th:errors="*{calories}"></span><br/>
+
+    <label>IsVegetarian: <input type="checkbox" th:field="*{isVegetarian}" /></label><br/>
+    <span th:if="${#fields.hasErrors('isVegetarian')}" th:errors="*{isVegetarian}"></span><br/>
+
+    <label>ExpirationDate: <input type="date" th:field="*{expirationDate}" /></label><br/>
+    <span th:if="${#fields.hasErrors('expirationDate')}" th:errors="*{expirationDate}"></span><br/>
+
+    <button type="submit">Add Food</button>
+</form>
+<a th:href="@{/}">Back to List</a>
+</body>
+</html>

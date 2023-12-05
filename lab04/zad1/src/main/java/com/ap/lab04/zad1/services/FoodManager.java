@@ -10,5 +10,5 @@ public interface FoodManager {
     Food putFood(UUID id, Food food);
     Food get(UUID id);
     List<Food> getAllFood();
-    Food deleteFood(UUID id);
+    boolean deleteFood(UUID id);
 }

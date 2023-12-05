@@ -10,9 +10,17 @@ import java.util.UUID;
 @Service
 public class FoodManagerInMemoryImpl implements FoodManager {
     List<Food> db = Collections.synchronizedList(new ArrayList<>());
+    private Food findFoodById(UUID targetId) {
+        for (Food food : db) {
+            if (food.getId().equals(targetId)) {
+                return food;
+            }
+        }
+        return null;
+    }
     @Override
     public UUID addFood(Food food){
-        Food foodToAdd = new Food(food.getName(), food.getTerm());
+        Food foodToAdd = new Food(food.getName(), food.getCalories(), food.getIsVegetarian(), food.getExpirationDate());
         db.add(foodToAdd);
         return foodToAdd.getId();
     };
@@ -20,7 +28,9 @@ public class FoodManagerInMemoryImpl implements FoodManager {
     public Food putFood(UUID id, Food food){
         Food foodToEdit = findFoodById(id);
         foodToEdit.setName(food.getName());
-        foodToEdit.setTerm(food.getTerm());
+        foodToEdit.setCalories(food.getCalories());
+        foodToEdit.setIsVegetarian(food.getIsVegetarian());
+        foodToEdit.setExpirationDate(food.getExpirationDate());
         return foodToEdit;
     };
     @Override
@@ -32,21 +42,12 @@ public class FoodManagerInMemoryImpl implements FoodManager {
         return db;
     };
     @Override
-    public Food deleteFood(UUID id){
+    public boolean deleteFood(UUID id){
         Food foodToDelete = findFoodById(id);
         if(foodToDelete != null){
             db.remove(foodToDelete);
+            return true;
         }
-        return foodToDelete;
+        return false;
     };
-    private Food findFoodById(UUID targetId) {
-        for (Food food : db) {
-            if (food.getId().equals(targetId)) {
-                System.out.println("Found matching food!");
-                return food;
-            }
-        }
-        System.out.println("Food not found with ID: " + targetId);
-        return null;
-    }
 }
