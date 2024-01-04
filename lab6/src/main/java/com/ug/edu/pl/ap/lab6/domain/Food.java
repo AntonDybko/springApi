@@ -23,13 +23,15 @@ public class Food {
     private Collection<Category> categories;
     private Shop shop;
 
-    public Food(long id, String name, double calories, Boolean isVegetarian, LocalDate expirationDate, License license) {
+    public Food(long id, String name, double calories, Boolean isVegetarian, LocalDate expirationDate, License license, Collection<Category> categories, Shop shop) {
         this.id = id;
         this.name = name;
         this.calories = calories;
         this.isVegetarian = isVegetarian;
         this.expirationDate = expirationDate;
         this.license = license;
+        this.categories = categories;
+        this.shop = shop;
     }
     public Food() {}
     @Id
@@ -75,7 +77,7 @@ public class Food {
     public void setName(String name) {
         this.name = name;
     }
-    @OneToOne(mappedBy = "licenseHolderName")
+    @OneToOne(mappedBy = "food")
     public License getLicense() {
         return license;
     }
@@ -83,7 +85,7 @@ public class Food {
     public void setLicense(License license) {
         this.license = license;
     }
-    @ManyToMany
+    @ManyToMany(mappedBy = "food")
     public Collection<Category> getCategories() {
         return categories;
     }

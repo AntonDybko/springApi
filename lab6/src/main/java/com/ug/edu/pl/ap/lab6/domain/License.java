@@ -12,13 +12,15 @@ public class License {
     private String licenseType;
     private String licenseHolderName;
     private String licenseHolderAddress;
-    public License(long id, String licenseNumber, String issuingAuthority, String licenseType, String licenseHolderName, String licenseHolderAddress) {
+    public Food food;
+    public License(long id, String licenseNumber, String issuingAuthority, String licenseType, String licenseHolderName, String licenseHolderAddress, Food food) {
         this.id = id;
         this.licenseNumber = licenseNumber;
         this.issuingAuthority = issuingAuthority;
         this.licenseType = licenseType;
         this.licenseHolderName = licenseHolderName;
         this.licenseHolderAddress = licenseHolderAddress;
+        this.food = food;
     }
     public License() {}
     @Id
@@ -54,7 +56,7 @@ public class License {
     public void setLicenseType(String licenseType) {
         this.licenseType = licenseType;
     }
-    @OneToOne
+
     public String getLicenseHolderName() {
         return licenseHolderName;
     }
@@ -69,5 +71,13 @@ public class License {
 
     public void setLicenseHolderAddress(String licenseHolderAddress) {
         this.licenseHolderAddress = licenseHolderAddress;
+    }
+    @OneToOne
+    public Food getFood() {
+        return food;
+    }
+
+    public void setFood(Food food) {
+        this.food = food;
     }
 }

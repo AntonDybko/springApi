@@ -42,7 +42,7 @@ public class Category {
         this.description = description;
     }
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany
     public Collection<Food> getFood() {
         return food;
     }
