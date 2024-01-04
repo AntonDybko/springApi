@@ -1,7 +1,6 @@
 package com.ug.edu.pl.ap.lab6.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -22,7 +21,8 @@ public class License {
         this.licenseHolderAddress = licenseHolderAddress;
     }
     public License() {}
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }

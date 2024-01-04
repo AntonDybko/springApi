@@ -1,7 +1,6 @@
 package com.ug.edu.pl.ap.lab6.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.Collection;
 
@@ -17,6 +16,8 @@ public class Category {
         this.description = description;
     }
     public Category() {}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }

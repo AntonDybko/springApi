@@ -1,7 +1,6 @@
 package com.ug.edu.pl.ap.lab6.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -26,6 +25,8 @@ public class Shop {
         this.closingTime = closingTime;
     }
     public Shop() {}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
