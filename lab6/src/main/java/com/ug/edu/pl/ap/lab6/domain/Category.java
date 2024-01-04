@@ -1,9 +1,11 @@
 package com.ug.edu.pl.ap.lab6.domain;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 
 import java.util.Collection;
 
+@Entity
 public class Category {
     private long id;
     private String name;

@@ -1,5 +1,6 @@
 package com.ug.edu.pl.ap.lab6.domain;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
 import java.math.BigDecimal;
@@ -7,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collection;
 
+@Entity
 public class Shop {
     private long id;
     private String name;

@@ -1,9 +1,11 @@
 package com.ug.edu.pl.ap.lab6.domain;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 
 import java.time.LocalDate;
 
+@Entity
 public class License {
     private long id;
     private String licenseNumber;
