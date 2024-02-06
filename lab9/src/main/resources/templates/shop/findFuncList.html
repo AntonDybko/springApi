@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Search Page</title>
+</head>
+<body>
+
+<h2>Search Shop by Address and Opening Time</h2>
+<form th:action="@{/shop/findByAddressAndOpeningTime}" method="get">
+    <label for="address">Address: </label>
+    <input type="text" id="address" name="address" required/>
+    <br>
+    <label for="openingTime">Opening Time: </label>
+    <input type="text" id="openingTime" name="openingTime" required th:attr="pattern='(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]'"/>
+    <br>
+    <button type="submit">Search</button>
+</form>
+
+<h2>Search Shop by Two Addresses</h2>
+<form th:action="@{/shop/findByTwoAddresses}" method="get">
+    <label for="address1">Address: </label>
+    <input type="text" id="address1" name="address1" required/>
+    <br>
+    <label for="address2">Address 2: </label>
+    <input type="text" id="address2" name="address2" required/>
+    <br>
+    <button type="submit">Search</button>
+</form>
+
+<h2>Search Shop by Address and Revenue</h2>
+<form th:action="@{/shop/findByAddressAndRevenue}" method="get">
+    <label for="address_ar">Address: </label>
+    <input type="text" id="address_ar" name="address_ar" required/>
+    <br>
+    <label for="revenue">Revenue: </label>
+    <input type="number" id="revenue" name="revenue" min="0" required/>
+    <br>
+    <button type="submit">Search</button>
+</form>
+
+<h2>Search Shop by Revenue</h2>
+<form th:action="@{/shop/findByRevenue}" method="get">
+    <label for="min_revenue">Min: </label>
+    <input type="number" id="min_revenue" name="min_revenue" min="0" required/>
+    <br>
+    <label for="max_revenue">Max: </label>
+    <input type="number" id="max_revenue" name="max_revenue" min="0" required/>
+    <br>
+    <button type="submit">Search</button>
+</form>
+
+</body>
+</html>

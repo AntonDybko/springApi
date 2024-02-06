@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface FoodManager {
-    UUID addFood(Food food);
+    Food addFood(Food food);
     Food putFood(UUID id, Food food);
     Food get(UUID id);
     List<Food> getAllFood();

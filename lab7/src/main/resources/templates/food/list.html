@@ -1,0 +1,22 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<h2>All Food</h2>
+<div th:if="${successMessage}">
+    <div th:text="${successMessage}" />
+</div>
+
+<div th:if="${errorMessage}">
+    <div th:text="${errorMessage}" />
+</div>
+
+<ul>
+    <li th:each="food : ${foodList}">
+        <span th:text="${food.name}"></span>
+        (<a th:href="@{/food/{id}(id=${food.id})}">Details</a>)
+        (<a th:href="@{/food/edit/{id}(id=${food.id})}">Edit</a>)
+        (<a th:href="@{/food/delete/{id}(id=${food.id})}">Delete</a>)
+    </li>
+</ul>
+<a th:href="@{/food/add}">Add Food</a>
+</body>
+</html>

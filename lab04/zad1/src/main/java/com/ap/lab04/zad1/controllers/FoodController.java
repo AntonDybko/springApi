@@ -38,22 +38,22 @@ public class FoodController {
 
     @PostMapping("/api/food")
     public ResponseEntity<Food> addFood(@Valid @RequestBody Food foodToAdd) {
-        UUID id = foodManager.addFood(foodToAdd);
+        Food addedFood = foodManager.addFood(foodToAdd);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(id)
+                .buildAndExpand(addedFood.getId())
                 .toUri();
 
-        return ResponseEntity.status(HttpStatus.CREATED).location(location).body(foodToAdd);
+        return ResponseEntity.status(HttpStatus.CREATED).location(location).body(addedFood);
     }
 
     @PutMapping("/api/food/{id}")
     public ResponseEntity<Food> editFood(@PathVariable UUID id, @Valid @RequestBody Food newFood) {
         Food editedFood = foodManager.putFood(id, newFood);
         if(editedFood != null){
-            return ResponseEntity.ok(newFood);
+            return ResponseEntity.ok(editedFood);
         }else{
             throw new FoodNotFoundException("Food not found with ID: " + id);
         }

@@ -1,0 +1,17 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<h2>Details</h2>
+<h2>Shop Details</h2>
+<ul>
+    <li><span>Name:</span> <span th:text="${shop.name}"></span></li>
+    <li><span>Address:</span> <span th:text="${shop.address}"></span></li>
+    <li><span>Revenue:</span> <span th:text="${shop.revenue}"></span></li>
+    <li><span>Opening time:</span> <span th:text="${shop.openingTime}"></span></li>
+    <li><span>Closing time:</span> <span th:text="${shop.closingTime}"></span></li>
+    <br>
+    (<a th:href="@{/shop/edit/{id}(id=${shop.id})}">Edit</a>)
+    (<a th:href="@{/shop/delete/{id}(id=${shop.id})}">Delete</a>)
+</ul>
+<a th:href="@{/shop/}">Back to List</a>
+</body>
+</html>

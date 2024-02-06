@@ -1,0 +1,576 @@
+{
+	"info": {
+		"_postman_id": "6e723654-dcc8-47a0-bd61-1fc81f08b8b0",
+		"name": "api_shop_9",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14174149"
+	},
+	"item": [
+		{
+			"name": "getAllShops",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.response.to.have.jsonBody(pm => {\r",
+							"        pm.expect(pm).to.be.an('array');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/shop"
+			},
+			"response": []
+		},
+		{
+			"name": "getShopsByAddressAndOpeningTime",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.response.to.have.jsonBody(pm => {\r",
+							"        pm.expect(pm).to.be.an('array');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/shop/findByAddressAndOpeningTime?address=456 Broad Ave, Townsville, AnotherState, 54321&openingTime=08:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"shop",
+						"findByAddressAndOpeningTime"
+					],
+					"query": [
+						{
+							"key": "address",
+							"value": "456 Broad Ave, Townsville, AnotherState, 54321"
+						},
+						{
+							"key": "openingTime",
+							"value": "08:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getShopsByAddressAndRevenue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.response.to.have.jsonBody(pm => {\r",
+							"        pm.expect(pm).to.be.an('array');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/shop/findByAddressAndRevenue?address=456 Broad Ave, Townsville, AnotherState, 22890&revenue=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"shop",
+						"findByAddressAndRevenue"
+					],
+					"query": [
+						{
+							"key": "address",
+							"value": "456 Broad Ave, Townsville, AnotherState, 22890"
+						},
+						{
+							"key": "revenue",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getShopsByRevenue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.response.to.have.jsonBody(pm => {\r",
+							"        pm.expect(pm).to.be.an('array');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/shop/findByRevenue?min=100&max=555555",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"shop",
+						"findByRevenue"
+					],
+					"query": [
+						{
+							"key": "min",
+							"value": "100"
+						},
+						{
+							"key": "max",
+							"value": "555555"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getShopsByTwoAddresses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.response.to.have.jsonBody(pm => {\r",
+							"        pm.expect(pm).to.be.an('array');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/shop/findByTwoAddresses?address1=456 Broad Ave, Townsville, AnotherState, 22891&address2=456 Broad Ave, Townsville, AnotherState, 22890",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"shop",
+						"findByTwoAddresses"
+					],
+					"query": [
+						{
+							"key": "address1",
+							"value": "456 Broad Ave, Townsville, AnotherState, 22891"
+						},
+						{
+							"key": "address2",
+							"value": "456 Broad Ave, Townsville, AnotherState, 22890"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addShop",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Test response header has Location\r",
+							"pm.test(\"Response header has Location\", function () {\r",
+							"    pm.response.to.have.header(\"Location\");\r",
+							"});\r",
+							"\r",
+							"// Test response has expected properties\r",
+							"pm.test(\"Response has expected properties\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson).to.have.property('id');\r",
+							"    pm.expect(responseJson).to.have.property('name');\r",
+							"    pm.expect(responseJson).to.have.property('address');\r",
+							"    pm.expect(responseJson).to.have.property('revenue');\r",
+							"    pm.expect(responseJson).to.have.property('openingTime');\r",
+							"    pm.expect(responseJson).to.have.property('closingTime');\r",
+							"\r",
+							"    pm.collectionVariables.set(\"shopId\", responseJson.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Zabka\",\r\n    \"address\": \"480 Broad Ave, Townsville, AnotherState, 54321\",\r\n    \"revenue\": 54321,\r\n    \"openingTime\": \"10:30\",\r\n    \"closingTime\": \"22:30\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/shop"
+			},
+			"response": []
+		},
+		{
+			"name": "getShopById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response has expected properties\r",
+							"pm.test(\"Response has expected properties\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseJson).to.have.property('id');\r",
+							"    pm.expect(responseJson).to.have.property('name');\r",
+							"    pm.expect(responseJson).to.have.property('address');\r",
+							"    pm.expect(responseJson).to.have.property('revenue');\r",
+							"    pm.expect(responseJson).to.have.property('openingTime');\r",
+							"    pm.expect(responseJson).to.have.property('closingTime');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/shop/{{shopId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "editShop",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"//const foodId = pm.collectionVariables.get(\"foodId\");\r",
+							"//pm.request.url = pm.request.url.replace(\"{id}\", foodId);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response has expected properties\r",
+							"pm.test(\"Response has expected properties\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.have.property('id');\r",
+							"    pm.expect(responseJson).to.have.property('name');\r",
+							"    pm.expect(responseJson).to.have.property('address');\r",
+							"    pm.expect(responseJson).to.have.property('revenue');\r",
+							"    pm.expect(responseJson).to.have.property('openingTime');\r",
+							"    pm.expect(responseJson).to.have.property('closingTime');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{shopId}},\r\n    \"name\": \"UpdatedZabka\",\r\n    \"address\": \"480 Broad Ave, Townsville, AnotherState, 54321\",\r\n    \"revenue\": 54321,\r\n    \"openingTime\": \"10:30\",\r\n    \"closingTime\": \"22:30\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/shop/{{shopId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "addFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Test response header has Location\r",
+							"pm.test(\"Response header has Location\", function () {\r",
+							"    pm.response.to.have.header(\"Location\");\r",
+							"});\r",
+							"\r",
+							"// Test response has expected properties\r",
+							"pm.test(\"Response has expected properties\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson).to.have.property('id');\r",
+							"    pm.expect(responseJson).to.have.property('name');\r",
+							"    pm.expect(responseJson).to.have.property('calories');\r",
+							"    pm.expect(responseJson).to.have.property('isVegetarian');\r",
+							"    pm.expect(responseJson).to.have.property('expirationDate');\r",
+							"\r",
+							"    pm.collectionVariables.set(\"foodId\", responseJson.id);\r",
+							"\r",
+							"    //console.log(pm.variables.get(\"foodId\"));\r",
+							"    //pm.environment.set(\"foodId\", responseJson.id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"addedFood\",\r\n    \"calories\": 90,\r\n    \"isVegetarian\": \"true\",\r\n    \"expirationDate\": \"2024-12-01\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/food"
+			},
+			"response": []
+		},
+		{
+			"name": "addFoodToShop",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response has expected properties\r",
+							"pm.test(\"Response has expected properties\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseJson).to.have.property('id');\r",
+							"    pm.expect(responseJson).to.have.property('name');\r",
+							"    pm.expect(responseJson).to.have.property('address');\r",
+							"    pm.expect(responseJson).to.have.property('revenue');\r",
+							"    pm.expect(responseJson).to.have.property('openingTime');\r",
+							"    pm.expect(responseJson).to.have.property('closingTime');\r",
+							"    pm.expect(responseJson).to.have.property('food');\r",
+							"\r",
+							"    const foodIdToCheck = pm.collectionVariables.get(\"foodId\");\r",
+							"    const food = responseJson.food;\r",
+							"    const isIdInCollection = food.some(food => food.id === foodIdToCheck);\r",
+							"    pm.expect(isIdInCollection).to.be.true;\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": "http://localhost:8080/api/shop/addFood/{{shopId}}/{{foodId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "removeFoodFromShop",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is empty\", function () {\r",
+							"    pm.response.to.not.have.body();\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/shop/removeFood/{{shopId}}/{{foodId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteShop",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"//Test response body\r",
+							"pm.test(\"Response body is empty\", function () {\r",
+							"    pm.response.to.not.have.body();\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/shop/{{shopId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"//Test response body\r",
+							"pm.test(\"Response body is empty\", function () {\r",
+							"    pm.response.to.not.have.body();\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/food/{{foodId}}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

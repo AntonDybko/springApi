@@ -1,8 +1,6 @@
-package com.ug.edu.pl.ap.lab6.domain;
+package com.ug.edu.pl.ap.lab7.domain;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
 
 @Entity
 public class License {
@@ -12,15 +10,15 @@ public class License {
     private String licenseType;
     private String licenseHolderName;
     private String licenseHolderAddress;
-    public Food food;
-    public License(long id, String licenseNumber, String issuingAuthority, String licenseType, String licenseHolderName, String licenseHolderAddress) {
+    //public Food food;
+    public License(long id, String licenseNumber, String issuingAuthority, String licenseType, String licenseHolderName, String licenseHolderAddress){//, Food food) {
         this.id = id;
         this.licenseNumber = licenseNumber;
         this.issuingAuthority = issuingAuthority;
         this.licenseType = licenseType;
         this.licenseHolderName = licenseHolderName;
         this.licenseHolderAddress = licenseHolderAddress;
-        //this.food = food;
+       // this.food = food;
     }
     public License() {}
     @Id
@@ -72,12 +70,24 @@ public class License {
     public void setLicenseHolderAddress(String licenseHolderAddress) {
         this.licenseHolderAddress = licenseHolderAddress;
     }
-    @OneToOne
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", licenseNumber='" + licenseNumber + '\'' +
+                ", issuingAuthority='" + issuingAuthority + '\'' +
+                ", licenseType='" + licenseType + '\'' +
+                ", licenseHolderName='" + licenseHolderName + '\'' +
+                ", licenseHolderAddress='" + licenseHolderAddress + '\'' +
+                '}';
+    }
+   /* @OneToOne
     public Food getFood() {
         return food;
     }
 
     public void setFood(Food food) {
         this.food = food;
-    }
+    }*/
 }

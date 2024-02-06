@@ -1,0 +1,16 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<h2>Details</h2>
+<h2>Food Details</h2>
+<ul>
+    <li><span>Name:</span> <span th:text="${food.name}"></span></li>
+    <li><span>Calories:</span> <span th:text="${food.calories}"></span></li>
+    <li><span>Is Vegetarian:</span> <span th:text="${food.isVegetarian ? 'Yes' : 'No'}"></span></li>
+    <li><span>Expiration Date:</span> <span th:text="${food.expirationDate}"></span></li>
+    <br>
+    (<a th:href="@{/food/edit/{id}(id=${food.id})}">Edit</a>)
+    (<a th:href="@{/food/delete/{id}(id=${food.id})}">Delete</a>)
+</ul>
+<a th:href="@{/food/}">Back to List</a>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Search Page</title>
+</head>
+<body>
+
+<h2>Search Fresh Vegetarian Food </h2>
+<form th:action="@{/food/fvg}" method="get">
+    <button type="submit">Search</button>
+</form>
+
+<h2>Search Food by Shop</h2>
+<form th:action="@{/food/fbc}" method="get">
+    <label for="shop">Shop: </label>
+    <input type="text" id="shop" name="shop" required/>
+    <button type="submit">Search</button>
+</form>
+
+<h2>Search Non-Vegetarian Food by Calories</h2>
+<form th:action="@{/food/nvfwc}" method="get">
+    <label for="calories">Minimum calories: </label>
+    <input type="number" id="calories" name="calories" required/>
+    <button type="submit">Search</button>
+</form>
+
+</body>
+</html>
+
+
+<!--
+@GetMapping("/food/fvg")
+@GetMapping("/food/fbc")
+@GetMapping("/food/nvfwc")
+-->

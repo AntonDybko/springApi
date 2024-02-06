@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "7b59d638-d152-41d1-bb21-546c2ab308cb",
+		"name": "web",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14174149"
+	},
+	"item": [
+		{
+			"name": "getMainPage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains 'All Food' heading\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"<h2>All Food</h2>\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/"
+			},
+			"response": []
+		},
+		{
+			"name": "getAddFoodPage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains 'Add Food' heading\", function () {\r",
+							"     pm.expect(pm.response.text()).to.include(\"<h2>Add Food</h2>\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains form for adding food\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('<form action=\"/add\" method=\"post\">');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/add"
+			},
+			"response": []
+		},
+		{
+			"name": "addFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains 'Food added'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('Food added');\r",
+							"\r",
+							"    const matches = pm.response.text().match(/\\/edit\\/([a-f0-9-]+)/);\r",
+							"    const firstFoodId = matches[0].replace('/edit/', '');;\r",
+							"    pm.collectionVariables.set(\"foodId\", firstFoodId)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name\n",
+							"value": "addedFood",
+							"type": "text"
+						},
+						{
+							"key": "calories",
+							"value": "90",
+							"type": "text"
+						},
+						{
+							"key": "isVegetarian",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "expirationDate",
+							"value": "2025-12-01",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8080/add"
+			},
+			"response": []
+		},
+		{
+			"name": "getEditFoodPage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains 'Edit food' heading\", function () {\r",
+							"     pm.expect(pm.response.text()).to.include(\"<h2>Edit Food</h2>\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains form for editing food\", function () {\r",
+							"    const matches = pm.response.text().match(/<form action=\"\\/edit\\/([a-f0-9-]+)/);\r",
+							"    pm.expect(pm.response.text()).to.include(matches[0]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/edit/{{foodId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "editFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains 'Food updated'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('Food updated');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "updatedBread",
+							"type": "text"
+						},
+						{
+							"key": "calories",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "isVegetarian",
+							"value": "false",
+							"type": "text"
+						},
+						{
+							"key": "expirationDate",
+							"value": "2025-12-01",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "{{foodId}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8080/edit/{{foodId}}"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains 'Food deleted'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('Food deleted');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/delete/{{foodId}}"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "foodId",
+			"value": "\"\""
+		},
+		{
+			"key": "foodId",
+			"value": ""
+		}
+	]
+}

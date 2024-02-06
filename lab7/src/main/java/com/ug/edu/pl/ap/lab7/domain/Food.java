@@ -1,12 +1,13 @@
-package com.ug.edu.pl.ap.lab6.domain;
+package com.ug.edu.pl.ap.lab7.domain;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import jakarta.persistence.*;
-
-import java.util.Collection;
-import java.util.UUID;
 
 @Entity
 public class Food {
@@ -16,14 +17,23 @@ public class Food {
     //@NotNull(message = "Field id cannot be empty")
     private long id;
     //private final UUID id;
+    @Pattern(regexp = "^[a-zA-Z, ]+$", message = "Wrong name format")
+    @NotNull(message = "Field name cannot be empty")
     private String name;
+    @Min(value = 0, message = "The number of calories must be greater than 0")
     private double calories;
+    @NotNull(message = "Field isVegetarian cannot be empty")
     private Boolean isVegetarian;
-    private License license;
-    private Collection<Category> categories;
-    private Shop shop;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull(message = "Field expirationDate cannot be empty")
+    @FutureOrPresent(message = "The expiration date must be future or today")
+    private LocalDate expirationDate ;
+    //private License license;
+    //private Collection<Category> categories;
+    //private Shop shop;
 
-    public Food(long id, String name, double calories, Boolean isVegetarian, LocalDate expirationDate) {
+    //License license, Collection<Category> categories, Shop shop
+    public Food(String name, double calories, Boolean isVegetarian, LocalDate expirationDate) {
         this.id = id;
         this.name = name;
         this.calories = calories;
@@ -42,9 +52,6 @@ public class Food {
     public void setId(long id) {
         this.id = id;
     }
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate expirationDate ;
 
     public Boolean getIsVegetarian() {
         return isVegetarian;
@@ -77,7 +84,19 @@ public class Food {
     public void setName(String name) {
         this.name = name;
     }
-    @OneToOne(mappedBy = "food")
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", calories='" + calories + '\'' +
+                ", isVegetarian='" + isVegetarian + '\'' +
+                ", expirationDate='" + expirationDate + '\'' +
+                '}';
+    }
+
+    /*@OneToOne(mappedBy = "food")
     public License getLicense() {
         return license;
     }
@@ -100,5 +119,5 @@ public class Food {
 
     public void setShop(Shop shop) {
         this.shop = shop;
-    }
+    }*/
 }

@@ -1,35 +1,32 @@
-package com.ug.edu.pl.ap.lab6.domain;
+package com.ug.edu.pl.ap.lab9.domain;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-
 @Entity
 public class License {
-    private long id;
+    private Long id;
     private String licenseNumber;
     private String issuingAuthority;
     private String licenseType;
     private String licenseHolderName;
     private String licenseHolderAddress;
     public Food food;
-    public License(long id, String licenseNumber, String issuingAuthority, String licenseType, String licenseHolderName, String licenseHolderAddress) {
-        this.id = id;
+    public License(String licenseNumber, String issuingAuthority, String licenseType, String licenseHolderName, String licenseHolderAddress){//, Food food) {
         this.licenseNumber = licenseNumber;
         this.issuingAuthority = issuingAuthority;
         this.licenseType = licenseType;
         this.licenseHolderName = licenseHolderName;
         this.licenseHolderAddress = licenseHolderAddress;
-        //this.food = food;
     }
     public License() {}
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -72,7 +69,20 @@ public class License {
     public void setLicenseHolderAddress(String licenseHolderAddress) {
         this.licenseHolderAddress = licenseHolderAddress;
     }
-    @OneToOne
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", licenseNumber='" + licenseNumber + '\'' +
+                ", issuingAuthority='" + issuingAuthority + '\'' +
+                ", licenseType='" + licenseType + '\'' +
+                ", licenseHolderName='" + licenseHolderName + '\'' +
+                ", licenseHolderAddress='" + licenseHolderAddress + '\'' +
+                ", food='" + food + '\'' +
+                '}';
+    }
+    @OneToOne(fetch = FetchType.EAGER)
     public Food getFood() {
         return food;
     }

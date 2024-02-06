@@ -19,10 +19,10 @@ public class FoodManagerInMemoryImpl implements FoodManager {
         return null;
     }
     @Override
-    public UUID addFood(Food food){
+    public Food addFood(Food food){
         Food foodToAdd = new Food(food.getName(), food.getCalories(), food.getIsVegetarian(), food.getExpirationDate());
         db.add(foodToAdd);
-        return foodToAdd.getId();
+        return foodToAdd;
     };
     @Override
     public Food putFood(UUID id, Food food){
