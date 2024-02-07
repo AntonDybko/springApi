@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "33b89a45-073c-4c29-a427-d05ae0bb3f3f",
-		"name": "api",
+		"_postman_id": "fd2c6bc0-4c86-4e54-af9a-98feb3ca1c43",
+		"name": "api_food_9",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "14174149"
 	},
@@ -33,6 +33,84 @@
 				"method": "GET",
 				"header": [],
 				"url": "http://localhost:8080/api/food"
+			},
+			"response": []
+		},
+		{
+			"name": "getFreshVegetarianFood",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.response.to.have.jsonBody(pm => {\r",
+							"        pm.expect(pm).to.be.an('array');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/food/findFreshVegetarianFood"
+			},
+			"response": []
+		},
+		{
+			"name": "getNonVegetarianFoodByCalories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test response is an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    pm.response.to.have.jsonBody(pm => {\r",
+							"        pm.expect(pm).to.be.an('array');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/food/findNonVegetarianFoodByCalories?calories=60.0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"food",
+						"findNonVegetarianFoodByCalories"
+					],
+					"query": [
+						{
+							"key": "calories",
+							"value": "60.0"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -91,7 +169,7 @@
 			"response": []
 		},
 		{
-			"name": "getById",
+			"name": "getFoodById",
 			"event": [
 				{
 					"listen": "test",
@@ -159,7 +237,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"{{foodId}}\",\r\n    \"name\": \"updatedFood\",\r\n    \"calories\": 90,\r\n    \"isVegetarian\": \"true\",\r\n    \"expirationDate\": \"2024-12-01\"\r\n}\r\n",
+					"raw": "{\r\n    \"id\": {{foodId}},\r\n    \"name\": \"updatedFood\",\r\n    \"calories\": 90,\r\n    \"isVegetarian\": \"true\",\r\n    \"expirationDate\": \"2024-12-01\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -198,11 +276,27 @@
 			"response": []
 		}
 	],
-	"variable": [
+	"event": [
 		{
-			"key": "foodId",
-			"value": "\"\""
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
 		{
 			"key": "foodId",
 			"value": ""
