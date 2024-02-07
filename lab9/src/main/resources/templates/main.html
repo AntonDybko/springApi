@@ -1,0 +1,17 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<h2>Main page</h2>
+<div th:if="${successMessage}">
+    <div th:text="${successMessage}" />
+</div>
+
+<div th:if="${errorMessage}">
+    <div th:text="${errorMessage}" />
+</div>
+
+
+<a th:href="@{/food/}">Food</a>
+<br>
+<a th:href="@{/shop/}">Shop</a>
+</body>
+</html>

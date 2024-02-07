@@ -50,18 +50,6 @@ public class FoodWebController {
         return "food/list";
     }
 
-    @GetMapping("/fbc")
-    public String findByShop(@RequestParam String shop, Model model) {
-        List<Food> food = foodService.findByShop(shop);
-        if (!food.isEmpty()) {
-            model.addAttribute("foodList", food);
-        } else {
-            model.addAttribute("errorMessage", FOOD_NOT_FOUND);
-            model.addAttribute("foodList", foodService.getAll());
-        }
-        return "food/list";
-    }
-
     @GetMapping("/nvfwc")
     public String findNonVegetarianFoodByCalories(@RequestParam double calories, Model model) {
         List<Food> food = foodService.findNonVegetarianFoodByCalories(calories);

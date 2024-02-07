@@ -8,7 +8,7 @@
     <label>Address: <input type="text" th:field="*{address}" /></label><br/>
     <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span><br/>
 
-    <label>Revenue: <input type="number" th:field="*{revenue}" /></label><br/>
+    <label>Revenue: <input type="number" th:field="*{revenue}" min="0"/></label><br/>
     <span th:if="${#fields.hasErrors('revenue')}" th:errors="*{revenue}"></span><br/>
 
     <label>Enter time in HH:MM format</label><br/>

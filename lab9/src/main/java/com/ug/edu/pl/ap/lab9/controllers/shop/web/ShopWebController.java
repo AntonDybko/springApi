@@ -26,7 +26,7 @@ import java.util.Optional;
 public class ShopWebController {
     private final ShopService shopService;
     private final FoodService foodService;
-    private final static String SHOP_NOT_FOUND = "Shop not found";
+    private final static String SHOP_NOT_FOUND = "No shops matches your criteria";
     private final static String SHOP_NOT_FOUND_WITH_ID = "Shop not found with ID: ";
 
     public ShopWebController(ShopService shopService, FoodService foodService) {

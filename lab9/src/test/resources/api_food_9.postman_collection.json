@@ -67,54 +67,6 @@
 			"response": []
 		},
 		{
-			"name": "getFoodByShop",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"// Test status code\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// Test response is an array\r",
-							"pm.test(\"Response is an array\", function () {\r",
-							"    pm.response.to.have.jsonBody(pm => {\r",
-							"        pm.expect(pm).to.be.an('array');\r",
-							"    });\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/food/findByShop?shop=Aushan",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"food",
-						"findByShop"
-					],
-					"query": [
-						{
-							"key": "shop",
-							"value": "Aushan"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "getNonVegetarianFoodByCalories",
 			"event": [
 				{

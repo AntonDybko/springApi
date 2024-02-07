@@ -11,13 +11,6 @@
     <button type="submit">Search</button>
 </form>
 
-<h2>Search Food by Shop</h2>
-<form th:action="@{/food/fbc}" method="get">
-    <label for="shop">Shop: </label>
-    <input type="text" id="shop" name="shop" required/>
-    <button type="submit">Search</button>
-</form>
-
 <h2>Search Non-Vegetarian Food by Calories</h2>
 <form th:action="@{/food/nvfwc}" method="get">
     <label for="calories">Minimum calories: </label>

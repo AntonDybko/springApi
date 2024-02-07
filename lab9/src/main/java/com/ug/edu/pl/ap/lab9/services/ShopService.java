@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,15 +40,8 @@ public class ShopService {
         return shopRepository.findById(id);
     };
     public Optional<Shop> findWholeById(Long id) {
-        Optional<Shop> foundShop = shopRepository.findById(id);
-        if(!foundShop.isEmpty()){
-            Shop extractedShop = foundShop.get();
-            extractedShop.getFood().size();
-            return Optional.of(extractedShop);
-        }else{
-            return Optional.of(null);
-        }
-    };//?????ok??
+        return shopRepository.findWholeById(id);
+    };
     public Shop add(Shop shop){
         return shopRepository.save(shop);
     }
@@ -62,41 +56,43 @@ public class ShopService {
     public Optional<Shop> addFood(Long shopId, Long foodId) {
         Optional<Shop> shop = this.findWholeById(shopId);
         Optional<Food> food = foodRepository.findById(foodId);
-        if (shop.isPresent() && food.isPresent() && food.get().getShop().getName() != shop.get().getName()) {
+        if (shop.isPresent() && food.isPresent()) {
             Shop currentShop = shop.get();
             Food currentFood = food.get();
 
             currentFood.getCategories().size();
 
             List<Food> foodInShop = currentShop.getFood();
-            if (foodInShop.stream().anyMatch(existingFood -> existingFood.getId().equals(currentFood.getId()))) {
+            if (foodInShop.stream().anyMatch(existingFood -> existingFood.equals(currentFood))){
                 return Optional.empty();
             }
 
             foodInShop.add(currentFood);
+            currentShop.setFood(foodInShop);
 
             shopRepository.save(currentShop);
-            foodRepository.save(currentFood);
             return Optional.of(currentShop);
         } else {
             return Optional.empty();
         }
     }
+
     public Optional<Shop> removeFood(Long shopId, Long foodId) {
         Optional<Shop> shop = this.findWholeById(shopId);
         Optional<Food> food = foodRepository.findById(foodId);
-        if (shop.isPresent() && food.isPresent() && food.get().getShop().getName() == shop.get().getName()) {
+        if (shop.isPresent() && food.isPresent()) {
             Food currentFood = food.get();
             Shop currentShop = shop.get();
 
             List<Food> foodInShop = currentShop.getFood();
+            if (!foodInShop.stream().anyMatch(existingFood -> existingFood.equals(currentFood))){
+                return Optional.empty();
+            }
             foodInShop.remove(currentFood);
 
             currentShop.setFood(foodInShop);
-            currentFood.setShop(null);
 
             shopRepository.save(currentShop);
-            foodRepository.save(currentFood);
             return Optional.of(currentShop);
         } else {
             return Optional.of(null);
@@ -116,19 +112,19 @@ public class ShopService {
     }
 
     public void learning() {
-        LocalDate currDate = LocalDate.now();
-        //LocalTime currentLocalTime = LocalTime.now();
-        //LocalTime pastLocalTime = currentLocalTime.minusHours(8);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime openingTime = LocalTime.parse("08:00", formatter);
+        LocalTime closingTime = LocalTime.parse("21:00", formatter);
 
-        LocalTime closingTime = LocalTime.now().truncatedTo(ChronoUnit.SECONDS);
-        LocalTime openingTime = closingTime.minusHours(8).truncatedTo(ChronoUnit.SECONDS);
+        Shop aushan = Shop.builder()
+                .name("Aushan")
+                .address("456 Broad Ave, Townsville, AnotherState, 54321")
+                .revenue(new BigDecimal("123456.456"))
+                .openingTime(openingTime)
+                .closingTime(closingTime)
+                .build();
 
-        Shop aushan = new Shop("Aushan", "456 Broad Ave, Townsville, AnotherState, 54321",
-                new BigDecimal("123456.456"), openingTime, closingTime);
-        add(aushan);
-
-        Shop biedronka = new Shop("Biedronka", "456 Broad Ave, Townsville, AnotherState, 22890",
-                new BigDecimal("123456.456"), openingTime, closingTime);
-        add(biedronka);
+        shopRepository.save(aushan);
     }
 }
+

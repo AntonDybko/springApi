@@ -572,5 +572,15 @@
 				]
 			}
 		}
+	],
+	"variable": [
+		{
+			"key": "shopId",
+			"value": ""
+		},
+		{
+			"key": "foodId",
+			"value": ""
+		}
 	]
 }

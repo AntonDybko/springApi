@@ -45,7 +45,6 @@
 							"\r",
 							"pm.test(\"Response contains nessesary headers\", function () {\r",
 							"    pm.expect(pm.response.text()).to.include(\"<h2>Search Fresh Vegetarian Food </h2>\");\r",
-							"    pm.expect(pm.response.text()).to.include(\"<h2>Search Food by Shop</h2>\");\r",
 							"    pm.expect(pm.response.text()).to.include(\"<h2>Search Non-Vegetarian Food by Calories</h2>\");\r",
 							"});"
 						],
@@ -83,49 +82,6 @@
 				"method": "GET",
 				"header": [],
 				"url": "http://localhost:8080/food/fvg"
-			},
-			"response": []
-		},
-		{
-			"name": "getFoodFbc",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Response contains 'All Food' heading\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"<h2>All Food</h2>\");\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/food/fbc?shop=Aushan",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"food",
-						"fbc"
-					],
-					"query": [
-						{
-							"key": "shop",
-							"value": "Aushan"
-						}
-					]
-				}
 			},
 			"response": []
 		},
@@ -188,7 +144,7 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Response contains form for adding food\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include('<form action=\"/add\" method=\"post\">');\r",
+							"    pm.expect(pm.response.text()).to.include('<form action=\"/food/add\" method=\"post\">');\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -216,9 +172,15 @@
 							"pm.test(\"Response contains 'Food added'\", function () {\r",
 							"    pm.expect(pm.response.text()).to.include('Food added');\r",
 							"\r",
-							"    const matches = pm.response.text().match(/\\/edit\\/([a-f0-9-]+)/);\r",
-							"    const firstFoodId = matches[0].replace('/edit/', '');;\r",
-							"    pm.collectionVariables.set(\"foodId\", firstFoodId)\r",
+							"    let pattern = /\\/food\\/edit\\/(\\d+)/g;\r",
+							"    let matches = [];\r",
+							"    let match;\r",
+							"    while ((match = pattern.exec(responseBody)) !== null) {\r",
+							"        matches.push(match[1]);\r",
+							"    }\r",
+							"    let lastMatch = matches.length > 0 ? matches[matches.length - 1] : null;\r",
+							"    \r",
+							"    pm.collectionVariables.set(\"foodId\", lastMatch)\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -299,7 +261,7 @@
 							"});\r",
 							"\r",
 							"pm.test(\"Response contains form for editing food\", function () {\r",
-							"    const matches = pm.response.text().match(/<form action=\"\\/edit\\/([a-f0-9-]+)/);\r",
+							"    const matches = pm.response.text().match(/<form action=\"\\/food\\/edit\\/([a-f0-9-]+)/);\r",
 							"    pm.expect(pm.response.text()).to.include(matches[0]);\r",
 							"});"
 						],

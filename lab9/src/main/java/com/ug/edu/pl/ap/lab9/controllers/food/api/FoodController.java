@@ -2,10 +2,12 @@ package com.ug.edu.pl.ap.lab9.controllers.food.api;
 
 import com.ug.edu.pl.ap.lab9.domain.Food;
 import com.ug.edu.pl.ap.lab9.domain.FoodDTO;
+import com.ug.edu.pl.ap.lab9.exceptions.ConflictException;
 import com.ug.edu.pl.ap.lab9.exceptions.NotFoundException;
 import com.ug.edu.pl.ap.lab9.services.FoodService;
 import jakarta.validation.Valid;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,15 +45,6 @@ public class FoodController {
         return ResponseEntity.ok(food);
     }
 
-    @GetMapping("/api/food/findByShop")
-    public ResponseEntity<List<FoodDTO>> findByShop(@RequestParam String shop) {
-        System.out.println(shop);
-        List<FoodDTO> food = foodService.findByShop(shop)
-                .stream().map(f-> new FoodDTO(f.getId(), f.getName()))
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(food);
-    }
-
     @GetMapping("/api/food/findNonVegetarianFoodByCalories")
     public ResponseEntity<List<FoodDTO>> findNonVegetarianFoodByCalories(@RequestParam double calories) {
         List<FoodDTO> food = foodService.findNonVegetarianFoodByCalories(calories)
@@ -72,24 +65,32 @@ public class FoodController {
 
     @PostMapping("/api/food")
     public ResponseEntity<Food> addFood(@Valid @RequestBody Food foodToAdd) {
-        Food newFood = foodService.add(foodToAdd);
+        try {
+            Food newFood = foodService.add(foodToAdd);
 
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(newFood.getId())
-                .toUri();
+            URI location = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(newFood.getId())
+                    .toUri();
 
-        return ResponseEntity.status(HttpStatus.CREATED).location(location).body(newFood);
+            return ResponseEntity.status(HttpStatus.CREATED).location(location).body(newFood);
+        } catch (DataIntegrityViolationException ex) {
+            throw new ConflictException("The food entry already exists.");
+        }
     }
 
     @PutMapping("/api/food/{id}")
     public ResponseEntity<Food> editFood(@PathVariable Long id, @Valid @RequestBody Food newFood) {
-        Food editedFood = foodService.edit(newFood);
-        if(editedFood != null){
-            return ResponseEntity.ok(editedFood);
-        }else{
-            throw new NotFoundException(FOOD_NOT_FOUND_WITH_ID + id);
+        try {
+            Food editedFood = foodService.edit(newFood);
+            if (editedFood != null) {
+                return ResponseEntity.ok(editedFood);
+            } else {
+                throw new NotFoundException(FOOD_NOT_FOUND_WITH_ID + id);
+            }
+        } catch (DataIntegrityViolationException ex) {
+            throw new ConflictException("The food entry already exists.");
         }
     }
 
