@@ -42,4 +42,14 @@ public class Food {
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "food_id"))
     private List<Category> categories;
+
+    /*@ManyToOne(fetch = FetchType.EAGER)
+    private Shop shop;*/ //2 uni-directionals
+
+    /*@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinColumn(name="shopId")
+    private Shop shop; bi-directional
+
+    bidirectional @OneToMany association is the best way to map a one-to-many
+    database relationship when we really need the collection on the parent side of the association.*/
 }

@@ -23,7 +23,7 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
 
     @Query("SELECT s FROM Shop s WHERE s.address = ?1 OR s.address = ?2 ORDER BY s.revenue DESC")
     List<Shop> findByTwoAddresses(String address1, String address2);
-    @Query("SELECT s FROM Shop s LEFT JOIN FETCH s.food f LEFT JOIN f.categories WHERE s.id = ?1")
+    @Query("SELECT s FROM Shop s LEFT JOIN FETCH s.food WHERE s.id = ?1")
     Optional<Shop> findWholeById(Long id);
 
     @Query("SELECT s FROM Shop s LEFT JOIN FETCH s.food")

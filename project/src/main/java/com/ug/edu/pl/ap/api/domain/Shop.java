@@ -49,6 +49,15 @@ public class Shop {
             cascade = { CascadeType.PERSIST, CascadeType.MERGE },
             fetch = FetchType.LAZY
     )
-    @JoinColumn(name = "food_id")
+    //@JoinColumn(name = "food_id")
     private List<Food> food;
 }
+
+/*
+@OneToMany(
+            mappedBy = "shop",
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE },
+            fetch = FetchType.LAZY
+    )
+    private List<Food> food;
+ */

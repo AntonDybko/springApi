@@ -41,6 +41,7 @@ public class ShopService {
     };
     public Optional<Shop> findWholeById(Long id) {
         return shopRepository.findWholeById(id);
+
     };
     public Shop add(Shop shop){
         return shopRepository.save(shop);
